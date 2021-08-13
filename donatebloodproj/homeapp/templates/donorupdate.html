@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% if title %}
+{% block title %}
+
+{{title}}
+
+{% endblock title %}
+
+{% endif %}
+
+
+
+{% block body %}
+<div class="container forms">
+
+    <h3 class="text-center font-weight-bold">আপনার তথ্য আপডেট করুন</h3>
+    {% if current_donor.status == "active" %}
+    <p class="text-success">** আপনার একাউন্ট বর্তমানে এক্টিভ রয়েছে **</p>
+
+    {%else%}
+    <p class="text-danger"><strong>** আপনার সকল তথ্য সঠিকভাবে না দিলে আপনার দাতা একাউন্ট এক্টিভ হবেনা । তাই
+            তথ্য গুলো
+            সঠিকভাবে পুরন
+            করে আপডেট করুন **</strong></p>
+
+
+    {% endif %}
+
+    {% if messages %}
+
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+        {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    {% endfor %}
+
+    {% endif %}
+
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        {{form|crispy}}
+        <input class="form-control btn btn-block bg-danger text-white" type="submit" value="আপডেট করুন">
+
+    </form>
+
+</div>
+
+
+{% endblock body %}

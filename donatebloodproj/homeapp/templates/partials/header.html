@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+    <div class="container">
+        <a class="navbar-brand" href="/">রক্তদিন</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'home' %}">হোমপেজ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'alldonors' %}">সকল রক্তদাতা</a>
+                </li>
+                {% if request.user.is_authenticated %}
+                {%else%}
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'register' %}">রক্তদাতা হিসেবে যুক্ত হন</a>
+                </li>
+                {% endif %}
+
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        আমার অ্যাকাউন্ট
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% if request.user.is_authenticated %}
+                        <li><a class="dropdown-item" href="{% url 'profile' %}">প্রোফাইল</a></li>
+
+                        {%else%}
+                        <li><a class="dropdown-item" href="{% url 'login' %}">লগইন</a></li>
+                        <li><a class="dropdown-item" href="{% url 'register' %}">নতুন একাউন্ট করুন</a></li>
+
+                        {% endif %}
+
+                    </ul>
+                </li>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'logout' %}">লগআউট</a>
+                </li>
+
+                {% endif %}
+
+            </ul>
+
+        </div>
+    </div>
+</nav>

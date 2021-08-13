@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% if title %}
+{% block title %}
+
+{{title}}
+
+{% endblock title %}
+
+{% endif %}
+
+
+
+{% block body %}
+<div class="container container-profile">
+
+    <div class="row">
+        <div class="col-md-4 profile">
+            <div class="user-avatar"> <img class="profile-pic" src="{% static 'images/userplaceholder.jpg' %}"
+                    alt="User"></div>
+            <div class="user-profile-details">
+                <h4 class="user-title">{{request.user.first_name}}</h4>
+                {% if donor.blood_group %}
+                <span class="donor-blood-group"> {{donor.blood_group}}</span>
+
+                {%endif%}
+                <div class="table-responsive">
+                    {% if donor %}
+
+
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>Location</td>
+                            <td>{{donor.address}}, {{donor.district}}</td>
+                        </tr>
+                        <tr>
+                            <td>Date of Birth</td>
+                            <td>{{donor.dob}}</td>
+                        </tr>
+                        <tr>
+                            <td>Last Donated</td>
+                            <td>{{donor.last_donated}}</td>
+                        </tr>
+                        <tr>
+                            <td>Contact No.</td>
+                            <td>{{donor.contact_no}}</td>
+                        </tr>
+                        <tr>
+                            <td>Whatsapp No.</td>
+                            <td>{{donor.whatsapp}}</td>
+                        </tr>
+                    </table>
+
+                    {% endif %}
+                </div>
+
+                <a href="{% url 'donorupdate' %}" class="btn btn-warning d-inline btn-sm">Update Profile</a>
+                <a href="#" class="btn btn-warning btn-sm">Change Profile Picture</a>
+
+            </div>
+        </div>
+        <div class="col-md-7 profile">
+            {% if donor.status == 'deactivate' %}
+            <p class="text-danger"><strong>** আপনার রক্তের গ্রুপসহ সকল তথ্য আপডেট করুন ** তাছাড়া আপনার প্রোফাইল এক্টিভ
+                    হবেনা </strong></p>
+            {%else%}
+            We Will Update more features here
+            {% endif %}
+
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock body %}

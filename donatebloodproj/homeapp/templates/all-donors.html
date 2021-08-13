@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% if title %}
+{% block title %}
+
+{{title}}
+
+{% endblock title %}
+
+{% endif %}
+
+
+
+{% block body %}
+<div>
+    <div id="donor-list" class="my-5">
+        <h2 class="text-center">সকল রক্তদাতাদের লিস্ট </h2>
+        <hr class="title-bottom-line">
+
+        <div class="container">
+            <br>
+            <form method="get">
+                {{donorfilter.form}}
+                <button class="btn btn-primary" type="submit">খুঁজুন
+                </button>
+
+            </form>
+            <br>
+
+            <div class="row">
+
+                {% for donor in donors %}
+                <div class="col-lg-4 col-md-6 col-sm-12 py-4">
+                    <div class="donor-box">
+                        <img class="lazyload" src="{% static 'images/loading.gif'%}"
+                            data-src="{% static 'images/userplaceholder.jpg'%}" alt="">
+                        <div class="donor-details">
+                            <h4 class="donor-name">{{donor.user.first_name}}</h4>
+                            <span class="donor-blood-group">{{donor.blood_group}}</span>
+                            <p class="donor-location">{{donor.address}}, {{donor.district}}</p>
+                            <p class="dononr-age">Age: {{donor.age}} <br> Last Donated : {{donor.last_donated}} </p>
+                            <p class="contact-no"> <strong><i class="fa fa-phone"></i> : {{donor.contact_no}}</strong>
+                            </p>
+                            <p class="donor-social">
+                                {% if donor.fb %}
+
+                                <a href="{{donor.fb}}"><i class="fa fa-facebook"></i></a>
+                                {%else%}
+                                <a href="#"><i class="fa fa-facebook"></i></i></a>
+                                {% endif %}
+
+                            </p>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                {% endfor %}
+
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+{% endblock body %}

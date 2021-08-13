@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% if title %}
+{% block title %}
+
+{{title}}
+
+{% endblock title %}
+
+{% endif %}
+
+
+
+{% block body %}
+<div class="container forms">
+
+
+    <form method="post">
+        <h3 class="form-title text-center mb-3">
+            {% if title %}
+            {{title}}
+            {% endif %}
+        </h3>
+        {% csrf_token %}
+        {{form|crispy}}
+        <input class="form-control btn btn-block bg-danger text-white" type="submit" value="সাবমিট করুন">
+
+    </form>
+
+    <hr>
+    <p class="font-bold">আপনি যদি আগেই আমাদের ওয়েবসাইট এ একাউন্ট করে থাকেন তবে <a href="{% url 'login' %}">এখানে
+            ক্লিক করে</a> লগিন করুন </p>
+
+</div>
+
+
+{% endblock body %}
