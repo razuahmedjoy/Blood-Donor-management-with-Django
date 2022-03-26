@@ -264,3 +264,13 @@ footer {
     padding: 1rem;
   }
 }
+
+
+
+#filter-form select {
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  padding: 2px;
+}

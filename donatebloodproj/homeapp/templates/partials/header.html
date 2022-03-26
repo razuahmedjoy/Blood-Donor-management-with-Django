@@ -13,6 +13,15 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="{% url 'alldonors' %}">সকল রক্তদাতা</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'shurur_kotha' %}">শুরুর কথা</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'blogs' %}">ব্লগ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'shohojogi' %}">সহযোগী প্রতিষ্ঠান</a>
+                </li>
                 {% if request.user.is_authenticated %}
                 {%else%}
                 <li class="nav-item">

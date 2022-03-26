@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+
+{% block title %}
+
+শুরুর কথা
+
+{% endblock title %}
+
+
+
+
+{% block body %}
+
+<div class="container-fluid">
+
+    <h1 class="text-center mt-5 mb-2">শুরুর কথা</h1>
+    <hr>
+
+    <div class="text-box mb-5">
+        {{shurur_kotha.description|safe}}
+    </div>
+</div>
+
+{%endblock body %}

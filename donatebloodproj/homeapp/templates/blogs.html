@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+
+
+{% if title %}
+{% block title %}
+
+{{title}}
+
+{% endblock title %}
+
+{% endif %}
+
+{%block css %}
+<style>
+.blog-img{
+    width: 100%;
+    height: 200px;
+
+}
+</style>
+{%endblock css %}
+
+
+
+
+{% block body %}
+<div class="container my-5">
+    <h2 class="text-center mb-5">{{title}}</h2>
+<div class="row section_padding volunteers_row justify-content-center">
+
+
+
+
+	{% for blog in blogs %}
+
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+        <div class="blogs card">
+            <img src="{{blog.coverphoto.url}}" alt="" class="card-img img-fluid blog-img"/>
+        
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{blog.title}}
+                </h5>
+                <small>{{blog.created_at}}</small>
+                {{blog.description|truncatewords:"18" |safe}}
+
+               
+            </div>
+            <button href="#" class="btn btn-sm btn-info">Read More</button>
+        </div>
+    </div>
+
+
+    {%endfor%}
+
+
+   
+
+    
+</div>
+</div>
+
+{%endblock body %}

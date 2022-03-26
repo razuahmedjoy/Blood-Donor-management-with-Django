@@ -6,6 +6,7 @@ from .models import Donor
 
 
 class DonorRegistrationForm(UserCreationForm):
+  
     username = forms.CharField(required=True, label="আপনার কন্টাক্ট নাম্বার", widget=forms.TextInput(
         attrs={'placeholder': '01XXXXXXXXXX'}))
     email = forms.CharField(required=True, label="আপনার ইমেইল লিখুন", widget=forms.TextInput(
@@ -48,87 +49,50 @@ class DonorUpdateform(forms.ModelForm):
         ('AB-', 'AB-'),
     )
     DISCTRICTS = (
-        ('Comilla','Comilla'),
-        ('Feni','Feni'),
-        ('Brahmanbaria','Brahmanbaria'),
-        ('Rangamati','Rangamati'),
-        ('Noakhali','Noakhali'),
-        ('Chandpur','Chandpur'),
-        ('Lakshmipur','Lakshmipur'),
+       
         ('Chattogram','Chattogram'),
-        ('Coxsbazar','Coxsbazar'),
-        ('Khagrachhari','Khagrachhari'),
-        ('Bandarban','Bandarban'),
-        ('Sirajganj','Sirajganj'),
-        ('Pabna','Pabna'),
-        ('Bogura','Bogura'),
-        ('Rajshahi','Rajshahi'),
-        ('Natore','Natore'),
-        ('Joypurhat','Joypurhat'),
-        ('Chapainawabganj','Chapainawabganj'),
-        ('Naogaon','Naogaon'),
-        ('Jashore','Jashore'),
-        ('Satkhira','Satkhira'),
-        ('Meherpur','Meherpur'),
-        ('Narail','Narail'),
-        ('Chuadanga','Chuadanga'),
-        ('Kushtia','Kushtia'),
-        ('Magura','Magura'),
-        ('Khulna','Khulna'),
-        ('Bagerhat','Bagerhat'),
-        ('Jhenaidah','Jhenaidah'),
-        ('Jhalakathi','Jhalakathi'),
-        ('Patuakhali','Patuakhali'),
-        ('Pirojpur','Pirojpur'),
-        ('Barisal','Barisal'),
-        ('Bhola','Bhola'),
-        ('Barguna','Barguna'),
-        ('Sylhet','Sylhet'),
-        ('Moulvibazar','Moulvibazar'),
-        ('Habiganj','Habiganj'),
-        ('Sunamganj','Sunamganj'),
-        ('Narsingdi','Narsingdi'),
-        ('Gazipur','Gazipur'),
-        ('Shariatpur','Shariatpur'),
-        ('Narayanganj','Narayanganj'),
-        ('Tangail','Tangail'),
-        ('Kishoreganj','Kishoreganj'),
-        ('Manikganj','Manikganj'),
-        ('Dhaka','Dhaka'),
-        ('Munshiganj','Munshiganj'),
-        ('Rajbari','Rajbari'),
-        ('Madaripur','Madaripur'),
-        ('Gopalganj','Gopalganj'),
-        ('Faridpur','Faridpur'),
-        ('Panchagarh','Panchagarh'),
-        ('Dinajpur','Dinajpur'),
-        ('Lalmonirhat','Lalmonirhat'),
-        ('Nilphamari','Nilphamari'),
-        ('Thakurgaon','Thakurgaon'),
-        ('Rangpur','Rangpur'),
-        ('Kurigram','Kurigram'),
-        ('Sherpur','Sherpur'),
-        ('Mymensingh','Mymensingh'),
-        ('Jamalpur','Jamalpur'),
-        ('Netrokona','Netrokona'),
-        
+    
     )
+    SUB_DISTRICTS = (
+        ('সাতকানিয়া', 'সাতকানিয়া'),
+        ('সীতাকুন্ড', 'সীতাকুন্ড'),
+        ('মীরসরাই', 'মীরসরাই'),
+        ('পটিয়া', 'পটিয়া'),
+        ('পটিয়া', 'পটিয়া'),
+        ('সন্দ্বীপ', 'সন্দ্বীপ'),
+        ('বাঁশখালী', 'বাঁশখালী'),
+        ('বোয়ালখালী', 'বোয়ালখালী'),
+        ('আনোয়ারা', 'আনোয়ারা'),
+        ('চন্দনাইশ', 'চন্দনাইশ'),
+        ('রাঙ্গুনিয়া', 'রাঙ্গুনিয়া'),
+        ('লোহাগাড়া', 'লোহাগাড়া'),
+        ('হাটহাজারী', 'হাটহাজারী'),
+        ('ফটিকছড়ি', 'ফটিকছড়ি'),
+        ('রাউজান', 'রাউজান'),
+        ('কর্ণফুলী', 'কর্ণফুলী'),
+    )
+
+  
+        
     contact_no = forms.CharField(
         required=True, label="আপনার নাম্বার")
     blood_group = forms.ChoiceField(
         required=True, label="রক্তের গ্রুপ", choices=GROUPS)
 
     dob = forms.DateField(
-        required=True, label="জন্মতারিখ", widget=forms.DateInput(format=('%Y-%m-%d'), attrs={'type': 'date'}))
-    last_donated = forms.CharField(
-        required=False, label="শেষ কবে রক্ত দিয়েছেন ( না দিয়ে থাকলে কিছু দিতে হবেনা এখানে ) ", widget=forms.DateInput(format=('%Y-%m-%d'), attrs={'type': 'date'}))
+        required=True, label="জন্মতারিখ", widget=forms.DateInput(format=('%d-%m-%Y'), attrs={'type': 'date'}))
+    # last_donated = forms.CharField(
+    #     required=False, label="শেষ কবে রক্ত দিয়েছেন ( না দিয়ে থাকলে কিছু দিতে হবেনা এখানে ) ", widget=forms.DateInput(format=('%d-%m-%Y'), attrs={'type': 'date'}))
     district = forms.ChoiceField(
         required=True, label="আপনার জেলা শহরের নাম", choices=DISCTRICTS)
+    sub_district = forms.ChoiceField(
+        required=True, label="আপনার উপজেলার নাম", choices=SUB_DISTRICTS)
+    
     address = forms.CharField(
-        required=True, label="আপনার এলাকা/মহল্লা/উপজেলা যেকোনো একটি দিন", widget=forms.DateInput(attrs={'placeholder': 'Street or Area'}))
+        required=True, label="আপনার এলাকা/মহল্লার নাম", widget=forms.DateInput(attrs={'placeholder': 'Street or Area'}))
     fb = forms.CharField(
         required=False, label="আপনার ফেসবুক আইডি লিংক ( যদি থাকে )", widget=forms.DateInput(attrs={'placeholder': 'www.facebook.com/youridusername'}))
 
     class Meta:
         model = Donor
-        exclude = ('user', 'status')
+        exclude = ('user', 'status','last_donated')

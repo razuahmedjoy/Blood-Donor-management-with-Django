@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # Extra packages
     'crispy_forms',
     'django_filters',
+    'tinymce',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -88,6 +89,23 @@ DATABASES = {
     }
 }
 
+# MYSQL configuration
+# DATABASES = {
+#     'default': {
+#         'ENGINE'  : 'django.db.backends.mysql', # <-- UPDATED line 
+#         'NAME'    : 'blood_management',                 # <-- UPDATED line 
+#         'USER'    : 'root',                     # <-- UPDATED line
+#         'PASSWORD': '',              # <-- UPDATED line
+#         'HOST'    : 'localhost',                # <-- UPDATED line
+#         'PORT'    : '3306',
+#         'OPTIONS': {
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES', innodb_strict_mode=1",
+#             'charset': 'utf8mb4',
+#             'autocommit': True,
+#         }
+#     },
+# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -112,8 +130,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-DATE_FORMAT = "m-D-Y"
-TIME_ZONE = 'UTC'
+DATE_FORMAT = "d-m-Y"
+TIME_ZONE = 'Asia/Dhaka'
 
 USE_I18N = True
 
@@ -128,16 +146,20 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = '/static/'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = '/media/'
+MEDIA_URL = 'media/'
+MEDIA_ROOT = 'media/'
+
 STATICFILES_DIRS = [
     BASE_DIR / "static",
-    '/var/www/static/',
+    # '/var/www/static/',
 ]
 
 
 LOGIN_URL = '/login/'
 
+APIKEY= "WBJWw8+MaSFdY6OWcLj/9ToSyrcG/wR2A+Ls2y+SgGw="
+CLIENTID = "5ea4395a-03e4-4494-b647-617b81f290b1"
+SENDERID = "8804445649863"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

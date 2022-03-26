@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+
+
+{% if title %}
+{% block title %}
+
+{{title}}
+
+{% endblock title %}
+
+{% endif %}
+
+{%block css %}
+<style>
+    .team-item {
+    overflow: hidden;
+    border-radius: 32px;
+    box-shadow: 0px 0px 5px #0000002e;
+    padding: 15px 20px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.team-item img {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    border-radius: 100%;
+    box-shadow: 0 0 20px #ccc;
+}
+.team-item-contact ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: #fff;
+}
+
+.team-item-intro {
+    text-align: center;
+    padding: 20px 0;
+}
+</style>
+{%endblock css %}
+
+
+
+
+{% block body %}
+<div class="container my-5">
+    <h2 class="text-center mb-5">{{title}}</h2>
+<div class="row section_padding volunteers_row justify-content-center">
+	{% for volunteer in volunteers %}
+    <div class="col-md-6 col-sm-6 col-lg-3 volunteer_single">
+      <div class="team-item">
+        <img src="{{volunteer.picture.url}}" alt="Photo">
+        <div class="team-item-intro">
+          <h2>{{volunteer.name}}</h2>
+          <h4>{{volunteer.designation}}</h4>
+          <p>{{volunteer.address}}</p>
+        </div>
+        <div class="team-item-contact">
+          <ul>
+            <li><a target="_blank" href="{{volunteer.fb_link|default_if_none:'#'}}"><i class="fa fa-facebook-square"></i> Message</a></li>
+            <li><a href="tel:{{voluneer.contact_no}}"><i class="fa fa-phone-square"></i> Call</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {%endfor%}
+
+
+   
+
+    
+</div>
+</div>
+
+{%endblock body %}

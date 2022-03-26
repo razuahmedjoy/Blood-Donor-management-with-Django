@@ -28,7 +28,10 @@
     <!-- Main Style CSS -->
 
     <link rel="stylesheet" href="{% static  '' %}css/style.css">
+    {%block css %}
+    {%endblock css %}
     <script type="text/javascript" src="{% static '' %}js/lazysizes.min.js"></script>
+    <script type="text/javascript" src="{% static '' %}js/sweetalert.min.js"></script>
 </head>
 
 <body>
@@ -57,6 +60,8 @@
 
     {% endblock footer %}
 
+    {%block js %}
+    {% endblock js %}
 </body>
 
 </html>

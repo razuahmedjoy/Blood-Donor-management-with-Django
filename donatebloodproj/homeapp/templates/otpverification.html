@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% if title %}
+{% block title %}
+
+{{title}}
+
+{% endblock title %}
+
+{% endif %}
+
+{%block css%}
+<link rel="stylesheet" href="{% static  '' %}css/registration.css">
+{%endblock css %}
+
+
+{% block body %}
+<div class="container forms">
+
+
+   {% if otpsent is True %}
+   <div class="user signupBx">
+    <div class="formBx">
+      <form action="?action=otpverify" method="POST">
+          {% csrf_token %}
+        <h2 class="text-center">OTP Verification</h2>
+
+        {% if otpError %}
+        <br>
+        <span class="text-danger">{{otpError}}</span>
+
+        {%endif%}
+
+        <br>
+
+        <label for="inputotp">আপনার মোবাইলে ৬ ডিজিটের কোড সেন্ড করা হয়েছে। নিচের বক্স এ কোড টি লিখে Verify এ ক্লিক করুন </label>
+        <input type="hidden" name="contact_no" value="{{contact_no}}">
+        <input type="hidden" name="otp" value="{{otp}}">
+
+        <input class="form-control" type="number" name="inputotp" placeholder="XXXXXX" required/>
+       
+        <input class="form-control bg-info" type="submit" name="" value="Verify" />
+       
+      </form>
+    </div>
+   
+  </div>
+
+   {%else %}
+    <div class="user signupBx">
+        <div class="formBx">
+          <form id="sendOtp" action="?action=sendotp" method="POST">
+              {% csrf_token %}
+            <h2 class="text-center">Registration with AAP</h2>
+
+          
+
+            <br>
+
+            <label for="contact_no">আপনার মোবাইল নাম্বার লিখুন</label>
+
+            <input class="form-control" type="number" name="contact_no" placeholder="0123XXXXX" required/>
+            {% if error %}
+            <span class="text-danger">{{error}}</span>
+            <br>
+            <br>
+
+            {%endif%}
+           
+            <input class="form-control bg-info" type="submit" name="" value="Send OTP" />
+           
+          </form>
+        </div>
+       
+      </div>
+    <hr>
+    <p class="font-bold">আপনি যদি আগেই আমাদের ওয়েবসাইট এ একাউন্ট করে থাকেন তবে <a href="{% url 'login' %}">এখানে
+            ক্লিক করে</a> লগিন করুন </p>
+    {%endif%}
+    
+{% include 'loader.html' %}
+
+
+</div>
+
+
+{% endblock body %}
+
+
+{% block js %}
+<script>
+
+    var loader = document.getElementById('loader');
+
+    
+    document.addEventListener('submit', function(e) {    
+      loader.classList.toggle('d-none');
+      
+        
+    })
+        
+
+</script>
+{% endblock js %}

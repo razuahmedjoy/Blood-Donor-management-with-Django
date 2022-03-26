@@ -17,14 +17,43 @@
 <div class="container forms">
 
 
-    <form method="post">
+    <form action="{% url 'create_account' %}" method="post" autocomplete="off">
         <h3 class="form-title text-center mb-3">
             {% if title %}
             {{title}}
             {% endif %}
         </h3>
         {% csrf_token %}
-        {{form|crispy}}
+
+        <div class="form-group">
+         
+            <input type="email" name="email" placeholder="আপনার ইমেইল লিখুন" class="textinput textInput form-control"
+                required id="email">
+
+        </div>
+        <div class="form-group">
+
+     
+            <input type="text" name="name" placeholder="আপনার নাম লিখুন" class="textinput textInput form-control" required id="name">
+
+        </div>
+        <div class="form-group">
+
+     
+            <input type="password" name="password1" placeholder="আপনার একটি পাসওয়ার্ড সেট করুন" class="textinput textInput form-control" required id="password1">
+
+        </div>
+        <div class="form-group">
+
+     
+            <input type="password" name="password2" placeholder="পুনরায় একই পাসওয়ার্ড লিখুন" class="textinput textInput form-control" required id="password2">
+
+        </div>
+        {%if pass_error %}
+        <span class="text-danger">{{pass_error}}</span>
+        <br>
+        {%endif %}
+
         <input class="form-control btn btn-block bg-danger text-white" type="submit" value="সাবমিট করুন">
 
     </form>
@@ -35,5 +64,20 @@
 
 </div>
 
+{%include "loader.html" %}
 
 {% endblock body %}
+
+
+
+
+{% block js %}
+<script>
+
+    document.addEventListener('submit', function(e) {    
+        toggleLoader();
+    })
+        
+
+</script>
+{% endblock js %}

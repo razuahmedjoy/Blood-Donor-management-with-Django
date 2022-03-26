@@ -50,7 +50,7 @@
 
     <div class="container">
         <br>
-        <form method="get">
+        <form id="filter-form" method="get">
             {{donorfilter.form}}
             <button class="btn btn-primary" type="submit">খুঁজুন
             </button>
@@ -70,7 +70,7 @@
                         <span class="donor-blood-group">{{donor.blood_group}}</span>
                         <p class="donor-location">{{donor.address}}, {{donor.district}}</p>
                         <p class="dononr-age">Age: {{donor.age}} <br> Last Donated : {{donor.last_donated}} </p>
-                        <p class="contact-no"> <strong><i class="fa fa-phone"></i> : {{donor.contact_no}}</strong>
+                        <p class="contact-no"> <strong><i class="fa fa-phone"></i></strong> : <button onclick="requestBlood('{{donor.id}}')" class="badge bg-danger outline-none border-0">রক্তের জন্য রিকুয়েস্ট করুন</button>
                         </p>
                         <p class="donor-social">
                             {% if donor.fb %}
@@ -96,7 +96,13 @@
 
 </div>
 
+{%include "loader.html" %}
 
 
 
 {% endblock body %}
+
+{% block js %}
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% endblock js %}
